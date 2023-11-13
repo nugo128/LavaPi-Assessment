@@ -7,11 +7,12 @@
       <input
         type="text"
         id="search"
+        placeholder="type here to search user"
         v-model="searchQuery"
         class="p-2 border rounded-md text-black"
       />
 
-      <div class="flex flex-col">
+      <div class="flex flex-col md:flex-row md:gap-4">
         <label for="age" class="text-xl">Filter by Age</label>
         <select v-model="ageFilter" id="age" class="p-2 border rounded-md text-black">
           <option value="">All</option>
