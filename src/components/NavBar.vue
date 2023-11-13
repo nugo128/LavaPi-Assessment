@@ -32,6 +32,7 @@
     stroke-width="1.5"
     stroke="currentColor"
     class="w-10 h-10 ml-2 mt-2 md:hidden block z-20"
+    :class="hamburgerActive ? 'fixed' : ''"
     @click="toggleHamburger"
   >
     <path
@@ -42,7 +43,7 @@
   </svg>
   <div
     v-show="hamburgerActive"
-    class="md:hidden flex absolute flex-col justify-center py-3 px-10 gap-8 bg-gray-600 h-screen z-10"
+    class="md:hidden flex fixed flex-col pt-32 px-10 gap-8 bg-gray-600 h-full z-10"
   >
     <RouterLink
       to="/"
