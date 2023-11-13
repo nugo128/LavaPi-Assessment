@@ -2,23 +2,23 @@
   <div class="flex justify-center items-center flex-col gap-12 mt-48">
     <div class="custom-shape bg-light-yellow top-20 md:left-1/3 right-1/3 absolute w-32"></div>
     <div
-      class="custom-shape-2 bg-light-yellow md:bottom-[18%] md:left-1/3 bottom-[72px] left-0 absolute md:w-24 w-32"
+      class="custom-shape-2 bg-light-yellow md:bottom-[18%] md:left-1/3 bottom-[10%] left-0 absolute md:w-24 w-32"
     ></div>
     <div
-      class="custom-shape-3 bg-light-yellow md:top-[40%] md:right-[10%] top-[73%] left-2/3 absolute md:w-44 w-32"
+      class="custom-shape-3 bg-light-yellow md:top-[40%] md:right-[10%] top-[74%] left-2/3 absolute md:w-44 w-32"
     ></div>
     <img
-      src="../../public/images/avatar1.jpg"
+      src="images/avatar1.jpg"
       alt="Your Image"
       class="absolute bottom-28 md:bottom-52 left-[2%] md:left-[18%] w-28 md:w-48 rounded-full border-2 border-light-yellow"
     />
     <img
-      src="../../public/images/avatar2.jpeg"
+      src="images/avatar2.jpeg"
       alt="Your Image"
       class="absolute top-28 right-1/3 w-28 md:w-44 rounded-full border-2 border-light-yellow"
     />
     <img
-      src="../../public/images/avatar3.jpeg"
+      src="images/avatar3.jpeg"
       alt="Your Image"
       class="absolute top-3/4 left-2/3 w-28 md:w-40 rounded-full border-2 border-light-yellow"
     />
