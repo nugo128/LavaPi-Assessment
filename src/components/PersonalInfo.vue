@@ -9,23 +9,26 @@
       class="mb-2 border-2 border-black rounded-3xl sm:w-[460px] w-max self-center"
     />
     <div class="flex flex-col gap-5">
-      <h2 class="responsive-data">
+      <h2 class="responsive-data cursor-pointer" @click="edit('firstName')">
         FirstName<span class="responsive-values">{{ user?.firstName }}</span>
       </h2>
-      <h2 class="responsive-data">
+      <h2 class="responsive-data cursor-pointer" @click="edit('lastName')">
         LastName<span class="responsive-values">{{ user?.lastName }}</span>
       </h2>
       <h2 class="responsive-data gap-10">
         MaidenName<span class="responsive-values">{{ user?.maidenName }}</span>
       </h2>
-      <h2 class="responsive-data">
+      <h2 class="responsive-data cursor-pointer" @click="edit('age')">
         Age<span class="responsive-values">{{ user?.age }}</span>
       </h2>
       <h2 class="responsive-data">
         Birth Date<span class="responsive-values">{{ user?.birthDate }}</span>
       </h2>
-      <h2 class="responsive-data">
+      <h2 class="responsive-data cursor-pointer" @click="edit('gender')">
         Gender<span class="responsive-values">{{ user?.gender }}</span>
+      </h2>
+      <h2 class="responsive-data cursor-pointer">
+        Height<span class="responsive-values" @click="edit('height')">{{ user?.height }} cm</span>
       </h2>
       <h2 class="responsive-blocks">
         <span class="text-center">Address</span>
@@ -55,9 +58,6 @@
         </div>
       </h2>
       <h2 class="responsive-data">
-        Height<span class="responsive-values">{{ user?.height }} cm</span>
-      </h2>
-      <h2 class="responsive-data">
         Weight<span class="responsive-values">{{ user?.weight }} kg</span>
       </h2>
       <h2 class="responsive-data">
@@ -82,6 +82,10 @@
 </template>
 
 <script setup>
+const emits = defineEmits(['update'])
+const edit = (key) => {
+  emits('update', key)
+}
 defineProps({
   user: {
     type: Object,

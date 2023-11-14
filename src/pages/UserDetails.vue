@@ -1,8 +1,28 @@
 <template>
   <div
-    :class="showConfirmation ? 'block fixed w-[99vw] h-screen bg-black opacity-70' : 'hidden'"
-    @click="showConfirmation = !showConfirmation"
+    :class="
+      showConfirmation || showUpdateForm
+        ? 'block fixed w-screen h-screen bg-black opacity-70'
+        : 'hidden'
+    "
+    @click="closeModal"
   ></div>
+  <div
+    :class="showUpdateForm ? 'flex flex-col gap-4 opacity-100 items-center' : 'hidden'"
+    class="fixed sm:w-max w-screen bg-white text-black text-2xl sm:top-[40%] top-1/4 xl:left-[40%] sm:left-[15%] md:left-[20%] px-3 py-10 rounded-3xl"
+  >
+    <label :for="valueName" class="text-center">Edit user {{ valueName }}</label>
+
+    <input
+      :type="valueName === 'age' || valueName === 'height' ? 'number' : 'text'"
+      :name="valueName"
+      v-model="inputData"
+      class="border-2 border-black rounded-2xl w-max"
+    />
+    <button class="bg-red-600 px-4 py-2 rounded-xl font-bold" @click="updateUserHandler">
+      Update
+    </button>
+  </div>
   <div
     :class="showConfirmation ? 'flex flex-col gap-4 opacity-100' : 'hidden'"
     class="fixed bg-white text-black text-2xl sm:top-[40%] top-1/4 xl:left-[40%] sm:left-[6%] md:left-[20%] p-10 rounded-3xl"
@@ -49,8 +69,9 @@
         Delete User
       </button>
     </div>
+    <h2 class="lg:text-4xl text-3xl">You can update users by clicking on values</h2>
     <div class="flex gap-10 justify-center flex-col xl:flex-row px-0 sm:px-10 xl:px-0 w-screen">
-      <PersonalInfo :user="user"></PersonalInfo>
+      <PersonalInfo :user="user" @update="updateHandler"></PersonalInfo>
       <div class="flex flex-col gap-16 self xl:w-[670px]">
         <DigitalInfo :user="user"></DigitalInfo>
         <EducationAndExperience :user="user"></EducationAndExperience>
@@ -72,6 +93,23 @@ const showConfirmation = ref(false)
 const user = ref({})
 const route = useRoute()
 const store = useUsersStore()
+const showUpdateForm = ref(false)
+const valueName = ref(null)
+const inputData = ref('')
+const updateUserHandler = () => {
+  if (inputData.value.length) {
+    store.updateUser(valueName.value, inputData.value, user.value.id)
+    router.replace('/list')
+  }
+}
+const updateHandler = (a) => {
+  showUpdateForm.value = true
+  valueName.value = a
+}
+const closeModal = () => {
+  showConfirmation.value = false
+  showUpdateForm.value = false
+}
 const deleteUser = () => {
   showConfirmation.value = true
 }

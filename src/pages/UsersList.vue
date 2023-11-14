@@ -59,7 +59,7 @@
           <span>Gender: </span><span class="font-bold">{{ user.gender }}</span>
         </h2>
         <h2 class="flex justify-between">
-          <span>City: </span><span class="font-bold">{{ user.address.city }}</span>
+          <span>Height: </span><span class="font-bold">{{ user.height }} cm</span>
         </h2>
         <RouterLink
           :to="`details/${user.id}`"
