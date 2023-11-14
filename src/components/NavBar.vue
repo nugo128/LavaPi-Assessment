@@ -13,12 +13,6 @@
       >Users List</RouterLink
     >
     <RouterLink
-      to="/details"
-      class="text-3xl hover:font-bold w-40 text-center hover:text-light-yellow"
-      :class="path.fullPath === '/details' ? 'text-light-yellow' : ''"
-      >User Details</RouterLink
-    >
-    <RouterLink
       to="/create"
       class="text-3xl hover:font-bold w-40 text-center hover:text-light-yellow"
       :class="path.fullPath === '/create' ? 'text-light-yellow' : ''"
@@ -56,12 +50,6 @@
       class="text-3xl hover:font-bold w-32 text-center hover:text-light-yellow"
       :class="path.fullPath === '/list' ? 'text-light-yellow' : ''"
       >Users List</RouterLink
-    >
-    <RouterLink
-      to="/details"
-      class="text-3xl hover:font-bold w-40 text-center hover:text-light-yellow"
-      :class="path.fullPath === '/details' ? 'text-light-yellow' : ''"
-      >User Details</RouterLink
     >
     <RouterLink
       to="/create"

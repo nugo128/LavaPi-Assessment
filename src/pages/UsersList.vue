@@ -55,9 +55,12 @@
         <h2 class="flex justify-between">
           <span>City: </span><span class="font-bold">{{ user.address.city }}</span>
         </h2>
-        <button class="w-full bg-red-500 rounded-xl py-2 hover:font-bold text-xl">
+        <RouterLink
+          :to="`details/${user.id}`"
+          class="w-full bg-red-500 rounded-xl py-2 hover:font-bold text-xl text-center"
+        >
           View Full Details
-        </button>
+        </RouterLink>
       </div>
     </div>
 
