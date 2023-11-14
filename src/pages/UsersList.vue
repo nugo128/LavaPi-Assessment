@@ -165,6 +165,9 @@ const paginatedUsers = computed(() => {
     if (genderFilter.value && user.gender !== genderFilter.value) {
       return false
     }
+    if (user.isDeleted) {
+      return false
+    }
     return true
   })
 
