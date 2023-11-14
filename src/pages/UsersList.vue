@@ -28,6 +28,12 @@
         </select>
       </div>
     </div>
+    <button
+      @click="toggleSortByNameOrder"
+      class="px-4 py-2 mx-2 rounded-md bg-blue-500 text-white self-center"
+    >
+      Sort by Name {{ sortByNameOrder === 'asc' ? 'Ascending' : 'Descending' }}
+    </button>
 
     <h3 class="text-center md:text-4xl italic text-3xl">
       Displayed {{ paginatedUsers.length }} users
@@ -110,6 +116,8 @@ const currentPage = ref(1)
 const searchQuery = ref('')
 const ageFilter = ref(null)
 const genderFilter = ref(null)
+const sortByNameOrder = ref('asc')
+const sort = ref(false)
 
 const uniqueAges = computed(() => {
   const ages = new Set(store.users[0]?.users.map((user) => user.age))
@@ -129,21 +137,40 @@ const paginatedUsers = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
 
-  let filteredUsers = store.users[0]?.users || []
-  if (searchQuery.value) {
-    const lowerCaseQuery = searchQuery.value.toLowerCase()
-    filteredUsers = filteredUsers.filter((user) =>
-      Object.values(user).some((value) => value.toString().toLowerCase().includes(lowerCaseQuery))
-    )
-  }
-  if (ageFilter.value) {
-    filteredUsers = filteredUsers.filter((user) => user.age === ageFilter.value)
-  }
-  if (genderFilter.value) {
-    filteredUsers = filteredUsers.filter((user) => user.gender === genderFilter.value)
-  }
+  const allUsers = store.users[0]?.users || []
 
-  return filteredUsers.slice(start, end)
+  const sortedAllUsers = allUsers.sort((a, b) => {
+    const nameA = `${a.firstName} ${a.lastName}`.toLowerCase()
+    const nameB = `${b.firstName} ${b.lastName}`.toLowerCase()
+
+    if (sortByNameOrder.value === 'desc' && sort.value) {
+      return nameA < nameB ? -1 : 1
+    } else if (sort.value) {
+      return nameA > nameB ? -1 : 1
+    }
+  })
+
+  const filteredUsers = sortedAllUsers.filter((user) => {
+    if (
+      searchQuery.value &&
+      !Object.values(user).some((value) =>
+        value.toString().toLowerCase().includes(searchQuery.value.toLowerCase())
+      )
+    ) {
+      return false
+    }
+    if (ageFilter.value && user.age !== ageFilter.value) {
+      return false
+    }
+    if (genderFilter.value && user.gender !== genderFilter.value) {
+      return false
+    }
+    return true
+  })
+
+  const paginatedUsers = filteredUsers.slice(start, end)
+
+  return paginatedUsers
 })
 
 const previousPage = () => {
@@ -160,6 +187,11 @@ const nextPage = () => {
 
 const goToPage = (pageNum) => {
   currentPage.value = pageNum
+}
+
+const toggleSortByNameOrder = () => {
+  sort.value = true
+  sortByNameOrder.value = sortByNameOrder.value === 'asc' ? 'desc' : 'asc'
 }
 
 onBeforeMount(() => {
