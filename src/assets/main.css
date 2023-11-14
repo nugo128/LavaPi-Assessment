@@ -2,3 +2,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  .responsive-data {
+    @apply text-black sm:text-3xl text-2xl flex justify-between border-black p-1 sm:border-b-2 border-b-[1px] mb-2;
+  }
+  .responsive-values {
+    @apply text-2xl sm:text-4xl;
+  }
+  .responsive-blocks {
+    @apply text-black sm:text-3xl text-2xl flex justify-between flex-col border-[1px] sm:border-2 border-black p-1 rounded-2xl mb-2;
+  }
+}
