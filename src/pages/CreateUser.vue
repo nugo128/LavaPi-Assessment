@@ -41,6 +41,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import useUsersStore from '../stores/users'
+import { onBeforeMount } from 'vue'
+import { useRouter } from 'vue-router'
 
 const firstNameRef = ref(null)
 const lastNameRef = ref(null)
@@ -50,6 +53,8 @@ const heightRef = ref(null)
 const emptyError = ref(false)
 const ageError = ref(false)
 const heightError = ref(false)
+const store = useUsersStore()
+const router = useRouter()
 
 const submitForm = () => {
   const formData = {
@@ -81,7 +86,14 @@ const submitForm = () => {
   } else {
     heightError.value = false
   }
-
-  console.log(formData)
+  if (!emptyError.value && !ageError.value && !heightError.value) {
+    store.addUser(formData)
+    router.replace('/list')
+  }
 }
+onBeforeMount(() => {
+  if (!store.users.length) {
+    store.getAllUsers()
+  }
+})
 </script>

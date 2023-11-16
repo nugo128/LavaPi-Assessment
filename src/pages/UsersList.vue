@@ -45,7 +45,7 @@
         :key="user.id"
         class="flex flex-col mb-10 max-w-max px-6 border-2 rounded-xl pb-6 border-light-yellow text-xl gap-2"
       >
-        <img :src="user.image" alt="" />
+        <img :src="user.image" alt="user image" class="w-[300px] h-[300px] mt-4 rounded-md" />
         <h2 class="flex justify-between">
           <span>Name: </span><span class="font-bold">{{ user.firstName }}</span>
         </h2>

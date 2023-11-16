@@ -7,7 +7,6 @@ export const useUsersStore = defineStore('user', () => {
     try {
       const response = await fetch('https://dummyjson.com/users')
       const data = await response.json()
-      console.log(data)
       users.value.push(data)
     } catch (error) {
       console.error('Error fetching users:', error)
@@ -41,6 +40,21 @@ export const useUsersStore = defineStore('user', () => {
     }
   }
 
-  return { users, getAllUsers, deleteUser, updateUser }
+  const addUser = async (data) => {
+    const newUser = data
+    try {
+      const response = await fetch('https://dummyjson.com/users/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUser)
+      })
+      const newdata = await response.json()
+      users.value[0].users.unshift(newdata)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return { users, getAllUsers, deleteUser, updateUser, addUser }
 })
 export default useUsersStore
