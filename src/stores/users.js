@@ -7,6 +7,7 @@ export const useUsersStore = defineStore('user', () => {
     try {
       const response = await fetch('https://dummyjson.com/users')
       const data = await response.json()
+      console.log(data)
       users.value.push(data)
     } catch (error) {
       console.error('Error fetching users:', error)
