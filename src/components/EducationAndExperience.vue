@@ -2,13 +2,13 @@
   <div class="bg-light-yellow rounded-2xl shadow-xl shadow-gray-600 px-10 py-4 flex flex-col gap-2">
     <h2 class="text-black self-center text-2xl sm:text-4xl italic">Education and Experience</h2>
     <h2 class="responsive-data">
-      University<span class="responsive-values">{{ user?.university }}</span>
+      University<span class="responsive-values text-right">{{ user?.university }}</span>
     </h2>
     <h2 class="responsive-data">
       Job Title<span class="responsive-values">{{ user?.company?.title }}</span>
     </h2>
     <h2 class="responsive-data">
-      Company<span class="responsive-values">{{ user?.company?.name }}</span>
+      Company<span class="responsive-values text-right">{{ user?.company?.name }}</span>
     </h2>
     <h2 class="responsive-data">
       Department<span class="responsive-values">{{ user?.company?.department }}</span>

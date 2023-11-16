@@ -69,7 +69,7 @@
         Delete User
       </button>
     </div>
-    <h2 class="lg:text-4xl text-3xl">You can update users by clicking on values</h2>
+    <h2 class="lg:text-4xl text-3xl text-center">You can update users by clicking on values</h2>
     <div class="flex gap-10 justify-center flex-col xl:flex-row px-0 sm:px-10 xl:px-0 w-screen">
       <PersonalInfo :user="user" @update="updateHandler"></PersonalInfo>
       <div class="flex flex-col gap-16 self xl:w-[670px]">
