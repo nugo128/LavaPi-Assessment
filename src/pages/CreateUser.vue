@@ -81,7 +81,7 @@ const submitForm = () => {
   } else {
     ageError.value = false
   }
-  if (heightRef.value.value < 100 || heightRef.value.value > 250) {
+  if (heightRef.value.value < 40 || heightRef.value.value > 250) {
     heightError.value = true
   } else {
     heightError.value = false
